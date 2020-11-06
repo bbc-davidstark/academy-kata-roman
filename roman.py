@@ -13,8 +13,6 @@ def is_five_num(n):
         x = x // 10
     if x == 5:
         return True
-    else:
-        return False
 
 
 def scan_numeral(l):
@@ -93,7 +91,11 @@ def main(input):
 
 
 if __name__ == "__main__":
-    print(str(main(sys.argv[1])))
+    try:
+        print(str(main(sys.argv[1])))
+    except Exception as e:
+        sys.stderr.write(str(e) + "\n")
+        sys.exit(1)
 
 
 def test_repeated_numeral():
