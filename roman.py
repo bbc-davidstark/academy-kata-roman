@@ -71,27 +71,23 @@ def main(input):
 
     scan(list(input))
 
-    number = 0
     l = list(input)
+    number = 0
     value = None
     sub = None
     while l:
         prev_value = value
         prev_sub = sub
         (value, sub, l) = next_atom(l)
-        if prev_value:
-            if value > prev_value:
-                # You can only subtract a single unit
-                # Except for subtractions, all digits are in nonincreasing order
-                raise Exception(
-                    "Numbers not decreasing left to right, or multiple subtractions"
-                )
-        if prev_sub:
-            if value >= prev_sub:
-                # You can’t subtract and add units to same number
-                raise Exception(
-                    "Attempted to add to a previously subtracted-from numeral"
-                )
+        if prev_value and value > prev_value:
+            # You can only subtract a single unit
+            # Except for subtractions, all digits are in nonincreasing order
+            raise Exception(
+                "Numbers not decreasing left to right, or multiple subtractions"
+            )
+        if prev_sub and value >= prev_sub:
+            # You can’t subtract and add units to same number
+            raise Exception("Attempted to add to a previously subtracted-from numeral")
         number = number + value
     return number
 
