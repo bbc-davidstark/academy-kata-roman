@@ -4,11 +4,13 @@
 import sys
 import pytest
 
-numerals = {"I": 1, "V": 5, "X": 10, "L": 50, "C": 100, "D": 500, "M": 1000}
+numerals = {"S": 0.5, "I": 1, "V": 5, "X": 10, "L": 50, "C": 100, "D": 500, "M": 1000}
 
 
 def is_five_num(n):
     x = numerals[n]
+    while x < 1:
+        x = x * 10
     while x >= 10:
         x = x // 10
     if x == 5:
@@ -152,3 +154,4 @@ def test_ok():
     assert main("I") == 1
     assert main("MDCCCLXXXVIII") == 1888
     assert main("MMMCMXCIX") == 3999
+    assert main("MMMCMXCIXS") == 3999.5
